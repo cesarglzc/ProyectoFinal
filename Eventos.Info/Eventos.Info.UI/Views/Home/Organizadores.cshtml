@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Eventos.Info.UI.Models.Organizador>
+
+@{
+    ViewBag.Title = "Organizadores";
+}
+
+<div class="row">
+     <div class="col-md-2">
+      </div>
+     <div class="col-md-8">
+
+
+<h2>Organizadores</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>            
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>       
+    </tr>
+}
+
+</table>
+
+         </div>
+    <div class="col-md-2">
+      </div>
+    </div>

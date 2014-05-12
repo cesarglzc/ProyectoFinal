@@ -1,0 +1,76 @@
+﻿@model Eventos.Info.UI.Models.Evento
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="row">
+     <div class="col-md-2">
+      </div>
+       <div class="col-md-4">
+           <div class="display-field">
+                <img src="@Html.DisplayFor(model => model.PosterUrl)"/>
+           </div>
+       </div>
+     <div class="col-md-4">
+        <h2>Delete</h2>
+
+        <h3>¿Seguro que deseas eliminar esto?</h3>
+        <fieldset>
+            <legend>Evento</legend>
+
+            <div class="display-label">
+                 <strong>Organizador &nbsp;</strong>
+                 @Html.DisplayFor(model => model.Organizador.Nombre)
+            </div>
+
+            <div class="display-label">
+                 <strong>Categoría &nbsp;</strong>
+                @Html.DisplayFor(model => model.Categoria.Categoria1)
+            </div>
+
+            <div class="display-label">
+                 <strong>@Html.DisplayNameFor(model => model.Nombre) &nbsp;</strong>
+                @Html.DisplayFor(model => model.Nombre)
+            </div>
+
+            <div class="display-label">
+                 <strong>@Html.DisplayNameFor(model => model.Fecha) &nbsp;</strong>
+                @Html.DisplayFor(model => model.Fecha)
+            </div>
+
+            <div class="display-label">
+                 <strong>@Html.DisplayNameFor(model => model.Lugar) &nbsp;</strong>
+                @Html.DisplayFor(model => model.Lugar)
+            </div>
+
+            <div class="display-label">
+                 <strong>@Html.DisplayNameFor(model => model.Hora) &nbsp;</strong>
+                @Html.DisplayFor(model => model.Hora)
+            </div>
+
+            <div class="display-label">
+                 <strong>@Html.DisplayNameFor(model => model.Precio) &nbsp;</strong>
+                @Html.DisplayFor(model => model.Precio)
+            </div>
+
+            <div class="display-label">
+                 <strong>@Html.DisplayNameFor(model => model.Descripcion) &nbsp;</strong>
+                @Html.DisplayFor(model => model.Descripcion)
+            </div>
+            <br />
+        </fieldset>
+        @using (Html.BeginForm()) {
+            <p>
+                <input type="submit" class="btn btn-success" value="Delete" /> |
+                @Html.ActionLink("Cancelar", "Index")
+            </p>
+        }
+
+         </div>
+
+  
+     <div class="col-md-2">
+      </div>
+     </div>

@@ -1,0 +1,77 @@
+﻿@model List<Eventos.Info.UI.Models.Evento>
+
+@{
+    ViewBag.Title = "Página principal";
+}
+
+
+
+@section featured {
+
+
+
+<div id="carouselContent">
+     <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+          <li data-target="#myCarousel" data-slide-to="4"></li>
+      </ol>
+      <div class="carousel-inner">
+
+        <div class="item active">
+              <center><img src="@Html.DisplayFor(model => Model.First().PosterUrl)" alt="First slide"/></center>
+               
+              <div class="container">
+                <div class="carousel-caption">
+                <h1> @Html.DisplayFor(modelItem => Model.First().Nombre)</h1>
+                <p> @Html.DisplayFor(modelItem => Model.First().Descripcion)</p>
+                <p>
+                  @Html.ActionLink("Ver más", "Details", new { id=Model.First().EventoId }, new { @class = "btn btn-warning btn-lg" })
+                  <!--<a class="btn btn-warning btn-lg" href="#" role="button">Ver más</a>-->
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+
+          
+          @foreach (var item in Model) {        
+              
+               if(Model.IndexOf(item)>0){
+               
+              
+              <div class="item">
+              <center><img src="@Html.DisplayFor(model => item.PosterUrl)" alt="First slide"/></center>
+               
+              <div class="container">
+                <div class="carousel-caption">
+                <h1> @Html.DisplayFor(modelItem => item.Nombre)</h1>
+                <p> @Html.DisplayFor(modelItem => item.Descripcion)</p>
+                <p>
+                  @Html.ActionLink("Ver más", "Details", new { id=item.EventoId }, new { @class = "btn btn-warning btn-lg" })
+                  <!--<a class="btn btn-warning btn-lg" href="#" role="button">Ver más</a>-->
+              </p>
+            </div>
+          </div>
+        </div>
+                  
+                  
+                  
+                        
+               
+          }     
+    }
+
+
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+</div>
+       
+}

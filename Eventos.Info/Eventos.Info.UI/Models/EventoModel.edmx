@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EventosdbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EventosdbModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="EventosdbModel.Store.Categoria" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Evento" EntityType="EventosdbModel.Store.Evento" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Organizador" EntityType="EventosdbModel.Store.Organizador" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="EventosdbModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Evento_Categoria" Association="EventosdbModel.Store.FK_Evento_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Organizador" Association="EventosdbModel.Store.FK_Evento_Organizador">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CategoriaId" />
+          </Key>
+          <Property Name="CategoriaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="EventoId" />
+          </Key>
+          <Property Name="EventoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizadorId" Type="int" />
+          <Property Name="CategoriaId" Type="int" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fecha" Type="nvarchar" MaxLength="25" />
+          <Property Name="Lugar" Type="nvarchar" MaxLength="200" />
+          <Property Name="Hora" Type="nvarchar" MaxLength="25" />
+          <Property Name="Precio" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="300" />
+          <Property Name="PosterUrl" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Organizador">
+          <Key>
+            <PropertyRef Name="OrganizadorId" />
+          </Key>
+          <Property Name="OrganizadorId" Type="int" Nullable="false" StoreGeneratedPattern="None" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Evento_Categoria">
+          <End Role="Categoria" Type="EventosdbModel.Store.Categoria" Multiplicity="0..1" />
+          <End Role="Evento" Type="EventosdbModel.Store.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="CategoriaId" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Organizador">
+          <End Role="Organizador" Type="EventosdbModel.Store.Organizador" Multiplicity="0..1" />
+          <End Role="Evento" Type="EventosdbModel.Store.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="OrganizadorId" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="OrganizadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EventosdbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EventosdbEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="EventosdbModel.Categoria" />
+          <EntitySet Name="Evento" EntityType="EventosdbModel.Evento" />
+          <EntitySet Name="Organizador" EntityType="EventosdbModel.Organizador" />
+          <EntitySet Name="sysdiagrams" EntityType="EventosdbModel.sysdiagrams" />
+          <AssociationSet Name="FK_Evento_Categoria" Association="EventosdbModel.FK_Evento_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Evento_Organizador" Association="EventosdbModel.FK_Evento_Organizador">
+            <End Role="Organizador" EntitySet="Organizador" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="CategoriaId" />
+          </Key>
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Evento" Relationship="EventosdbModel.FK_Evento_Categoria" FromRole="Categoria" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="EventoId" />
+          </Key>
+          <Property Name="EventoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizadorId" Type="Int32" />
+          <Property Name="CategoriaId" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Fecha" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Lugar" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Hora" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Precio" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="PosterUrl" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Categoria" Relationship="EventosdbModel.FK_Evento_Categoria" FromRole="Evento" ToRole="Categoria" />
+          <NavigationProperty Name="Organizador" Relationship="EventosdbModel.FK_Evento_Organizador" FromRole="Evento" ToRole="Organizador" />
+        </EntityType>
+        <EntityType Name="Organizador">
+          <Key>
+            <PropertyRef Name="OrganizadorId" />
+          </Key>
+          <Property Name="OrganizadorId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="None" />
+          <Property Name="Nombre" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Usuario" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Evento" Relationship="EventosdbModel.FK_Evento_Organizador" FromRole="Organizador" ToRole="Evento" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Evento_Categoria">
+          <End Role="Categoria" Type="EventosdbModel.Categoria" Multiplicity="0..1" />
+          <End Role="Evento" Type="EventosdbModel.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="CategoriaId" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Evento_Organizador">
+          <End Role="Organizador" Type="EventosdbModel.Organizador" Multiplicity="0..1" />
+          <End Role="Evento" Type="EventosdbModel.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organizador">
+              <PropertyRef Name="OrganizadorId" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="OrganizadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EventosdbModelStoreContainer" CdmEntityContainer="EventosdbEntities1">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="EventosdbModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="Categoria1" ColumnName="Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="EventosdbModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="EventoId" ColumnName="EventoId" />
+                <ScalarProperty Name="OrganizadorId" ColumnName="OrganizadorId" />
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Lugar" ColumnName="Lugar" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PosterUrl" ColumnName="PosterUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizador">
+            <EntityTypeMapping TypeName="EventosdbModel.Organizador">
+              <MappingFragment StoreEntitySet="Organizador">
+                <ScalarProperty Name="OrganizadorId" ColumnName="OrganizadorId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EventosdbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

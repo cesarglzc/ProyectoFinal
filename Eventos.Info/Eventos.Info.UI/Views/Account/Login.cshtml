@@ -1,0 +1,55 @@
+﻿@model Eventos.Info.UI.Models.LoginModel
+
+@{
+    ViewBag.Title = "Iniciar sesión";
+}
+
+<section id="loginForm">
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+        </hgroup>
+        <h4>Utilice una cuenta local para iniciar sesión.</h4>
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <fieldset>
+                <legend>Formulario de inicio de sesión</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.UserName, new {@class="label-control" })
+                        @Html.TextBoxFor(m => m.UserName, new {@class="form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Password, new {@class="label-control" })
+                        @Html.PasswordFor(m => m.Password, new {@class="form-control" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </li>
+                    <li>
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                    </li>
+                </ol>
+                <input type="submit" class="btn btn-success" value="Iniciar sesión" />
+            </fieldset>
+            <p>
+                @Html.ActionLink("Registrate", "Register") si no tienes ninguna cuenta.
+            </p>
+        }
+    </div>
+    <div class="col-md-2"></div>
+</div>
+</section>
+
+<section class="social" id="socialLoginForm">
+    <h2>Usar otro servicio para iniciar sesión.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

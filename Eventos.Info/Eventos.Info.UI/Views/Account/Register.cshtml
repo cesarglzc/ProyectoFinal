@@ -1,0 +1,48 @@
+﻿@model Eventos.Info.UI.Models.RegisterModel
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+            <p>Cree una cuenta nueva.</p>
+        </hgroup>
+
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+
+            <fieldset>
+                <legend>Formulario de registro</legend>
+                <ol>
+                    <li>
+                        @Html.LabelFor(m => m.UserName, new {@class="label-control" })
+                        @Html.TextBoxFor(m => m.UserName, new {@class="form-control" })
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.Password, new {@class="label-control" })
+                        @Html.PasswordFor(m => m.Password, new {@class="form-control" })
+                    </li>
+                    <li>
+                        @Html.LabelFor(m => m.ConfirmPassword, new {@class="label-control" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new {@class="form-control" })
+                    </li>
+                </ol>
+                <p class="text-right">
+                    <input type="submit" class="btn btn-success" value="Registrarse" />
+                </p>
+                
+            </fieldset>
+        }
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Eventos.Info.Service.EventoService" CodeBehind="EventoService.svc.cs" %>
